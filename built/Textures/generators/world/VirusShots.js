@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var pixi_js_1 = require("pixi.js");
+var generateVirusShots = function () {
+    var size = 416;
+    var shadowSize = 16;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = canvas.height = size;
+    ctx.shadowBlur = shadowSize;
+    ctx.shadowColor = 'white';
+    ctx.fillStyle = 'white';
+    ctx.arc(size / 2, size / 2, size / 2 - shadowSize, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fill();
+    var texture = pixi_js_1.Texture.from(canvas);
+    texture.baseTexture.mipmap = pixi_js_1.MIPMAP_MODES.POW2;
+    texture.baseTexture.scaleMode = pixi_js_1.SCALE_MODES.LINEAR;
+    return texture;
+};
+exports.default = generateVirusShots;
